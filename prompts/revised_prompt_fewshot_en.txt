@@ -1,0 +1,80 @@
+[Few-shot Examples]
+
+[Example 2 — 영어 기사]
+
+[Article Title]
+Woman Sentenced for Assisting Prison Escapees
+
+[News Article]
+A woman who helped two convicts escape from prison earlier this year, sparking a high profile manhunt, was sentenced to a prison term.
+Joyce Mitchell, who worked at the Clinton Correctional Facility in the state of New York where prisoners Richard Matt and David Sweat were imprisoned, had pleaded guilty in July to first-degree promoting prison contraband, a crime that carries a sentence between 2 ? and seven years, and fourth-degree criminal facilitation, which carries a sentence of one year, to be served concurrently.
+She was also fined $6,000.
+At the hearing, a weeping Mitchell told the judge she was "sorry" and that she would "take it all back" if she could.
+"I am 51 years old. And this is by far the worst mistake I have ever made in my life. I live with regret every day and will for the rest of my life," she said.
+Mitchell had said she helped the prisoners because she feared for her life and her husband's life. She had carried on an intimate relationship with Matt, according to reports.
+Judge Kevin Ryan said he didn't find her story credible.
+"At any time you could have stopped the escape from happening," he said.
+Mitchell, who worked in the prison's tailor shop, allegedly smuggled tools to the convicts which helped them escape. The tools, which included hacksaw blades, were hidden in hamburger meat, police official said.
+Mitchell told the court she was seeking counseling and had agreed to give up her teaching credentials.
+The escape led to a massive, three-week manhunt, which led to the shooting death of Matt and the eventual recapture of Sweat.
+Mitchell may still face a hefty financial penalty for her crime, as the state is seeking restitution for the massive costs of the manhunt.
+
+[Output]
+{
+  "entities": [
+    {
+      "person_id": 1,
+      "entity_type": "PERSON",
+      "canonical_name": "Joyce Mitchell",
+      "mentions": ["Joyce Mitchell", "Mitchell"],
+      "description": "Pleaded guilty to promoting prison contraband and criminal facilitation after helping Richard Matt and David Sweat escape, was sentenced to prison and fined $6,000, and expressed regret at the hearing",
+      "sentiment": "strongly_negative",
+      "sentiment_reason": "She pleaded guilty to helping two convicted prisoners escape and to offenses involving prison contraband and criminal facilitation, and the escape triggered a three-week manhunt. Her later apology and regret do not neutralize the completed crime and guilty plea."
+    },
+    {
+      "person_id": 2,
+      "entity_type": "PERSON",
+      "canonical_name": "Richard Matt",
+      "mentions": ["Richard Matt", "Matt"],
+      "description": "Escaped from the Clinton Correctional Facility with David Sweat and was later shot and killed during the manhunt",
+      "sentiment": "negative",
+      "sentiment_reason": "He escaped from prison with David Sweat, an unlawful act that led to a three-week manhunt. His later death is an event he experienced and is not used as negative evidence."
+    },
+    {
+      "person_id": 3,
+      "entity_type": "PERSON",
+      "canonical_name": "David Sweat",
+      "mentions": ["David Sweat", "Sweat"],
+      "description": "Escaped from the Clinton Correctional Facility with Richard Matt and was eventually recaptured",
+      "sentiment": "negative",
+      "sentiment_reason": "He escaped from prison with Richard Matt, an unlawful act that led to a three-week manhunt. His eventual recapture is an outcome of the escape, not a separate basis for increasing the sentiment strength."
+    },
+    {
+      "person_id": 4,
+      "entity_type": "PERSON",
+      "canonical_name": "Kevin Ryan",
+      "mentions": ["Kevin Ryan"],
+      "description": "Said at the hearing that he did not find Mitchell's account credible and that she could have stopped the escape",
+      "sentiment": "neutral",
+      "sentiment_reason": "The article reports his judicial assessment and comments at the sentencing hearing; making those statements in that procedural role is value-neutral for him."
+    }
+  ]
+}
+
+[이 예시에서 추출하지 않은 항목과 이유]
+- "A woman", "two convicts", "the prisoners", "the judge", "police official", "her husband" :
+  이름 없는 일반 지칭 → 2-4
+- "Clinton Correctional Facility" : 기관·시설명 → 2-5
+- "New York" : 장소명 → 2-5
+- "Judge Kevin Ryan" : 직함 전체를 mention으로 쓰지 않고 이름 부분 "Kevin Ryan"만 사용 → 3
+
+[이 예시에서 주의할 점]
+- "Mitchell", "Matt", "Sweat"처럼 성만 단독으로 등장한 표기를 mentions에 포함했다.
+  각 표기는 문맥상 앞서 나온 특정 인물을 명백히 다시 지칭한다.
+- "Matt"와 "Sweat"은 일반 단어와 형태가 겹칠 수 있지만, 이 기사에서는 대문자 표기와 문맥상
+  각각 Richard Matt와 David Sweat의 성으로 쓰였으므로 mention으로 인정한다.
+- canonical_name은 본문에 실제 등장한 가장 완전한 형태인
+  "Joyce Mitchell", "Richard Matt", "David Sweat", "Kevin Ryan"을 사용한다.
+- Mitchell의 사과와 후회는 범죄 이후의 발언이다. 현재의 유죄 인정과 도피 지원 사실을
+  과거·후속의 긍정적 또는 완화적 요소로 상쇄해 neutral로 만들지 않는다.
+- Matt의 사망은 그가 겪은 사건이므로 부정 근거가 아니며, Ryan의 사법적 발언은 neutral이다.
