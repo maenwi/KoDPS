@@ -6,6 +6,8 @@ KoDPS/
 ├── LICENSE                            # CC BY 4.0
 ├── data/
 │   └── kodps.jsonl                    # 4,000 기사 / 11,750 개체
+├── docs/
+│   └── annotation_guideline.md        # Human annotation 가이드라인
 ├── raw_outputs/
 │   └── gpt-5-mini_revised/            # gpt-5-mini + Revised prompt 원 출력
 └── prompts/
